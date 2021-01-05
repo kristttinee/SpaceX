@@ -1,50 +1,32 @@
-<<<<<<< HEAD:src/screens/HomeScreen.js
-import React from 'react';
-import { StyleSheet, View, Text, ActivityIndicator } from 'react-native'
-import { FlatList } from 'react-native-gesture-handler';
-
-import { useQuery } from '@apollo/client';
-import { GET_PAST_LAUNCHES } from '../graphql/Queries';
-
-import MissionList from '../components/MissionList';
-=======
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, ActivityIndicator, FlatList } from 'react-native'
 
 import { useQuery } from '@apollo/client';
 import { GET_PAST_LAUNCHES } from '../../graphql/Queries';
->>>>>>> 76b887efcd8f4677aa1d1a04dbefae49162b14f4:src/screens/Home/HomeScreen.js
 
 import MissionList from '../../components/MissionList';
 
-<<<<<<< HEAD:src/screens/HomeScreen.js
-const HomeScreen = () => {
-  const { loading, data } = useQuery(GET_PAST_LAUNCHES);
-
-  const filterLaunches = () => {
-    const filter = data.launchesPast.filter(launch =>
-      launch.mission_id?.length
-      && launch.links.flickr_images?.length)
-    return filter
-  }
-=======
 import { addPastLaunches } from './Data/HomeScreen.actions'
 
-const filterLaunches = (launchesList) => {
-    return launchesList.filter(launch =>
-      launch.mission_id.length > 0
-      && launch.links.flickr_images.length > 0)
+/**
+ * Returns launches with image & id 
+ * @return {Array} Return parsed launches 
+ */
+
+const filterLaunches = (launchesList) => {  
+    return launchesList?.filter(launch =>
+      launch.mission_id.length
+      && launch.links.flickr_images.length)
 }
 
-const HomeScreen = ({ navigation, addPastLaunches, launches }) => {
-  const { loading, error, data } = useQuery(GET_PAST_LAUNCHES);
+const HomeScreen = ({addPastLaunches, launches }) => {
+  const { loading, data } = useQuery(GET_PAST_LAUNCHES);
 
   useEffect(() => {
     addPastLaunches(filterLaunches(data?.launchesPast));
     
   }, [data])
->>>>>>> 76b887efcd8f4677aa1d1a04dbefae49162b14f4:src/screens/Home/HomeScreen.js
 
   if (loading)
     return <ActivityIndicator style={styles.activityIndicator} size="large" color="#00ff00" />;
