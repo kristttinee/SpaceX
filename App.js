@@ -1,17 +1,21 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
+
+import { StyleSheet, Text, View } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { ApolloProvider } from '@apollo/client';
 
-import HomeScreen from './src/screens/HomeScreen';
+import HomeScreen from './src/screens/Home/HomeScreen';
 import { client } from './src/graphql/Client';
 import DetailsScreen from './src/screens/DetailsScreen';
 import ShipsScreen from './src/screens/ShipsScreen';
 
-const Stack = createStackNavigator()
+import store from './src/store';
+
+const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const HomeStackNavigation = () => {
@@ -34,12 +38,14 @@ const ShipsStackNavigation = () => {
 function App() {
   return (
     <ApolloProvider client={client}>
-      <NavigationContainer style={styles.container}>
-        <Drawer.Navigator initialRouteName="Home">
-          <Drawer.Screen name="Home" component={HomeStackNavigation} />
-          <Drawer.Screen name="Ships" component={ShipsStackNavigation} />
-        </Drawer.Navigator>
-      </NavigationContainer>
+      <Provider store={store} >
+        <NavigationContainer style={styles.container}>
+          <Drawer.Navigator initialRouteName="Home">
+            <Drawer.Screen name="Home" component={HomeStackNavigation} />
+            <Drawer.Screen name="Ships" component={ShipsStackNavigation} />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </Provider>
     </ApolloProvider>
   );
 }
