@@ -9,7 +9,7 @@ const DetailsScreen = ({route}) => {
   const { detail } = route.params;
   return (
     <View style={styles.container}>
-      <Text>{JSON.stringify(detail)}</Text>  
+      <Text>{detail}</Text>  
     </View>
   )
 }

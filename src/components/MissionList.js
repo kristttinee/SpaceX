@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const MissionList = ({ missionName, imageUri, detail }) => {
+const MissionList = ({ missionName, imageUri, detail }) => { //Change name: Mision Item
 
   const navigation = useNavigation();
 
@@ -16,7 +16,7 @@ const MissionList = ({ missionName, imageUri, detail }) => {
           style={styles.image}
           source={{ uri: imageUri }}
         />
-        <Text style={StyleSheet.text}>Mission Name: {missionName}</Text>
+        <Text style={styles.text}>Mission Name: {missionName}</Text>
       </TouchableOpacity>
     </View>
   )
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 200,
+    // resizeMode: '' Revisar
   },
   text: {
     fontSize: 16,

@@ -4,10 +4,10 @@ import { SHIPS } from '../graphql/Queries';
 import { useQuery } from '@apollo/client';
 
 const ShipsScreen = () => {
-  const { loading, error, data } = useQuery(SHIPS);
+  const { loading, data } = useQuery(SHIPS);
 
   return (
-    <View style={styles.container}>
+    <View>
     {loading ? <ActivityIndicator style={styles.activityIndicator} size="large" color="#00ff00" /> :
       <FlatList
         data={data.ships}
@@ -27,12 +27,8 @@ const ShipsScreen = () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    // backgroundColor: '#fff'
-  },
   text: {
     alignSelf: 'center',
-    // marginTop: 100,
   },
   image: {
     width: 200,

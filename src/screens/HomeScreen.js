@@ -1,19 +1,20 @@
 import React from 'react';
-import { StyleSheet, View, Text, ActivityIndicator, Button } from 'react-native'
+import { StyleSheet, View, Text, ActivityIndicator } from 'react-native'
+import { FlatList } from 'react-native-gesture-handler';
+
 import { useQuery } from '@apollo/client';
 import { GET_PAST_LAUNCHES } from '../graphql/Queries';
-import { FlatList } from 'react-native-gesture-handler';
+
 import MissionList from '../components/MissionList';
-import { useEffect } from 'react';
 
 
-const HomeScreen = ({ navigation }) => {
-  const { loading, error, data } = useQuery(GET_PAST_LAUNCHES);
+const HomeScreen = () => {
+  const { loading, data } = useQuery(GET_PAST_LAUNCHES);
 
   const filterLaunches = () => {
     const filter = data.launchesPast.filter(launch =>
-      launch.mission_id.length > 0
-      && launch.links.flickr_images.length > 0)
+      launch.mission_id?.length
+      && launch.links.flickr_images?.length)
     return filter
   }
 
