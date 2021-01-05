@@ -27,12 +27,8 @@ const ShipsScreen = () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    // backgroundColor: '#fff'
-  },
   text: {
     alignSelf: 'center',
-    // marginTop: 100,
   },
   image: {
     width: 200,

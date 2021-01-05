@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import PropTypes from 'prop-types';
 
 const MissionList = ({ missionName, imageUri, detail }) => {
 
@@ -21,6 +22,12 @@ const MissionList = ({ missionName, imageUri, detail }) => {
     </View>
   )
 }
+
+MissionList.propTypes = {
+  detail: PropTypes.string.isRequired,
+  missionName: PropTypes.string.isRequired,
+  imageUri: PropTypes.string
+};
 
 const shadowStyle = {
   shadowOffset: {
